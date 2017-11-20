@@ -1,6 +1,7 @@
 package com.olegsagenadatrytwo.eventapplication.view.mainactivity.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.olegsagenadatrytwo.eventapplication.R;
 import com.olegsagenadatrytwo.eventapplication.entities.Event;
+import com.olegsagenadatrytwo.eventapplication.entities.SingleTonEvent;
+import com.olegsagenadatrytwo.eventapplication.view.detailactivity.DetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +62,16 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
                 holder.ivImage.setImageDrawable(context.getResources().getDrawable(R.drawable.defaultimage));
             }
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SingleTonEvent singleTonEvent = SingleTonEvent.getInstance();
+                singleTonEvent.setEvent(events.get(position));
+                Intent detailIntent = new Intent(context, DetailActivity.class);
+                context.startActivity(detailIntent);
+            }
+        });
     }
 
     @Override
