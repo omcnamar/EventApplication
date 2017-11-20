@@ -1,8 +1,21 @@
 package com.olegsagenadatrytwo.eventapplication.view.mainactivity;
 
 
-public class MainActivityPresenter implements MainActivityContract.Presenter {
+import android.util.Log;
 
+import com.olegsagenadatrytwo.eventapplication.entities.Events;
+import com.olegsagenadatrytwo.eventapplication.injection.mainactivitypresenter.DaggerMainActivityPresenterComponent;
+import com.olegsagenadatrytwo.eventapplication.injection.mainactivitypresenter.MainActivityPresenterModule;
+import com.olegsagenadatrytwo.eventapplication.model.remote.IRemote;
+import com.olegsagenadatrytwo.eventapplication.model.remote.Remote;
+
+import javax.inject.Inject;
+
+public class MainActivityPresenter implements MainActivityContract.Presenter, IRemote {
+
+    public static final String TAG = "MainActivityPresenter";
+    @Inject
+    Remote remote;
     private MainActivityContract.View view;
 
     @Override
@@ -17,10 +30,21 @@ public class MainActivityPresenter implements MainActivityContract.Presenter {
 
     @Override
     public void attachRemote(){
-
+        DaggerMainActivityPresenterComponent
+                .builder()
+                .mainActivityPresenterModule(new MainActivityPresenterModule(this))
+                .build()
+                .insert(this);
     }
 
     @Override
     public void getEvents(String query) {
+        remote.getEvents(query);
+    }
+
+    @Override
+    public void sendData(Events events) {
+        Log.d(TAG, "sendData: " + events.getEvents().size());
+        view.eventsLoadedUpdateUI(events);
     }
 }
