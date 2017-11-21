@@ -14,8 +14,8 @@ public class Remote {
         this.iremote = iremote;
     }
 
-    public void getEvents(String query){
-        retrofit2.Call<Events> postsDataCall = RetrofitHelper.getEvents(query);
+    public void getEvents(String query, String lat, String lon){
+        retrofit2.Call<Events> postsDataCall = RetrofitHelper.getEvents(query, lat, lon);
         postsDataCall.enqueue(new retrofit2.Callback<Events>() {
             @Override
             public void onResponse(@NonNull retrofit2.Call<Events> call, @NonNull retrofit2.Response<Events> response) {

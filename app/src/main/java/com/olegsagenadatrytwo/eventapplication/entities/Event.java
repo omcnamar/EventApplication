@@ -18,6 +18,9 @@ public class Event {
     @SerializedName("url")
     @Expose
     private String url;
+    @SerializedName("vanity_url")
+    @Expose
+    private String vanityUrl;
     @SerializedName("start")
     @Expose
     private Start start;
@@ -111,6 +114,9 @@ public class Event {
     @SerializedName("logo")
     @Expose
     private Logo logo;
+    @SerializedName("venue")
+    @Expose
+    private Venue venue;
 
     public Name getName() {
         return name;
@@ -142,6 +148,14 @@ public class Event {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getVanityUrl() {
+        return vanityUrl;
+    }
+
+    public void setVanityUrl(String vanityUrl) {
+        this.vanityUrl = vanityUrl;
     }
 
     public Start getStart() {
@@ -390,6 +404,14 @@ public class Event {
 
     public void setLogo(Logo logo) {
         this.logo = logo;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 
 }

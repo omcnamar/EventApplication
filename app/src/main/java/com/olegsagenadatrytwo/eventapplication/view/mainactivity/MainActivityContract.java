@@ -12,7 +12,7 @@ public interface MainActivityContract {
 
     interface Presenter extends BasePresenter<View> {
         void attachRemote();
-        void getEvents(String query);
+        void getEvents(String query, String lat, String lon);
     }
 
 }

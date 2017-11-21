@@ -38,8 +38,8 @@ public class MainActivityPresenter implements MainActivityContract.Presenter, IR
     }
 
     @Override
-    public void getEvents(String query) {
-        remote.getEvents(query);
+    public void getEvents(String query, String lat, String lon) {
+        remote.getEvents(query, lat, lon);
     }
 
     @Override

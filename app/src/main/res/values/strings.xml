@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">EventApplication</string>
+    <string name="title_location_permission">Allow location</string>
+    <string name="text_location_permission">To see events near you</string>
+    <string name="ok">ok</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

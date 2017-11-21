@@ -11,10 +11,10 @@ public class Original {
     private String url;
     @SerializedName("width")
     @Expose
-    private Object width;
+    private Integer width;
     @SerializedName("height")
     @Expose
-    private Object height;
+    private Integer height;
 
     public String getUrl() {
         return url;
@@ -24,19 +24,19 @@ public class Original {
         this.url = url;
     }
 
-    public Object getWidth() {
+    public Integer getWidth() {
         return width;
     }
 
-    public void setWidth(Object width) {
+    public void setWidth(Integer width) {
         this.width = width;
     }
 
-    public Object getHeight() {
+    public Integer getHeight() {
         return height;
     }
 
-    public void setHeight(Object height) {
+    public void setHeight(Integer height) {
         this.height = height;
     }
 

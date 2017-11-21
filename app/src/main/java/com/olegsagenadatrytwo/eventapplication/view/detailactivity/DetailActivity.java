@@ -2,6 +2,7 @@ package com.olegsagenadatrytwo.eventapplication.view.detailactivity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -60,5 +61,10 @@ public class DetailActivity extends AppCompatActivity {
     private void setUpDagger() {
         DaggerDetailActivityComponent.create().insert(this);
         DaggerDetailActivityComponent.builder().detailActivityModule(new DetailActivityModule()).build().insert(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
     }
 }
