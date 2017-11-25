@@ -3,6 +3,7 @@ package com.olegsagenadatrytwo.eventapplication.view.detailactivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -11,6 +12,8 @@ import com.olegsagenadatrytwo.eventapplication.entities.Event;
 import com.olegsagenadatrytwo.eventapplication.entities.SingleTonEvent;
 import com.olegsagenadatrytwo.eventapplication.injection.detailactivity.DaggerDetailActivityComponent;
 import com.olegsagenadatrytwo.eventapplication.injection.detailactivity.DetailActivityModule;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -28,6 +31,9 @@ public class DetailActivity extends AppCompatActivity {
     CircleImageView mIvImage;
     @BindView(R.id.tvDescription)
     TextView mTvDescription;
+    private String eventId;
+    private Menu menu;
+    private boolean liked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,7 @@ public class DetailActivity extends AppCompatActivity {
         String title = event.getName().getText();
         String description = event.getDescription().getText();
         String imageURL = event.getLogo().getUrl();
+        eventId = event.getId();
 
         mTvTitle.setText(title);
         mTvDescription.setText(description);
@@ -65,6 +72,44 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.action_bar, menu);
+        this.menu = menu;
+
+        //when creating action bar check the shared preference if the user has liked this event
+        List<String> savedIds = presenter.getSavedEvents(this);
+
+        for(String id : savedIds){
+            if(id.equals(eventId)){
+                menu.findItem(R.id.actionLike).setIcon(R.drawable.ic_like_48dp);
+                liked = true;
+                break;
+            }else{
+                menu.findItem(R.id.actionLike).setIcon(R.drawable.ic_unlike);
+                liked = false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        switch (item.getItemId()) {
+            case R.id.actionLike:
+                if(!liked) {
+                    presenter.saveEvent(eventId, this);
+                    item.setIcon(R.drawable.ic_like_48dp);
+                    liked = true;
+                }else{
+                    presenter.removeEvent(eventId, this);
+                    item.setIcon(R.drawable.ic_unlike);
+                    liked = false;
+                }
+                return true;
+        }
+        return true;
     }
 }
