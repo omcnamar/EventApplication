@@ -21,6 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     Button mBtnMap;
     private String query;
     @BindView(R.id.searchView)
-    SearchView mSearchView;
+    EditText mSearchView;
     @BindView(R.id.btnSearch)
     Button mBtnSearch;
     @BindView(R.id.tvError)
@@ -161,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     @OnClick(R.id.btnSearch)
     public void onViewClicked() {
-        query = mSearchView.getQuery().toString();
+        query = mSearchView.getText().toString();
         if (lat != null && lon != null) {
             presenter.getEvents(query.trim(), lat, lon);
         } else {

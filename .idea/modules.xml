@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EventApplication.iml" filepath="$PROJECT_DIR$/EventApplication.iml" />
+      <module fileurl="file://C:\Users\omcna\Desktop\androidProjects\EventApplication\EventApplication\EventApplication.iml" filepath="C:\Users\omcna\Desktop\androidProjects\EventApplication\EventApplication\EventApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\omcna\Desktop\androidProjects\EventApplication\EventApplication\app\app.iml" filepath="C:\Users\omcna\Desktop\androidProjects\EventApplication\EventApplication\app\app.iml" />
     </modules>
   </component>
 </project>
