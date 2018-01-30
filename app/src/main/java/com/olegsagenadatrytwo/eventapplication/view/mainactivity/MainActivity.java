@@ -48,6 +48,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View, LocationListener {
 
+    //test comment
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 20;
     private static final String TAG = "MainActivity";
     @BindView(R.id.btnMap)
